@@ -1,5 +1,5 @@
 from django.shortcuts import  render, redirect, get_object_or_404
-from .models import User, PoleTable, PoleHaveOptions, Vote
+from .models import Poll, PoleTable, PoleHaveOptions, Vote
 # Create your views here.
 
 def poll_list(request):
@@ -12,7 +12,7 @@ def poll_detail(request, poll_id):
 
 def vote(request, poll_id):
     poll = get_object_or_404(PoleTable, pk=poll_id)
-    user = get_object_or_404(User, pk=request.POST['user_id'])
+    user = get_object_or_404(Poll, pk=request.POST['user_id'])
     try:
         selected_option = poll.polehaveoptions_set.get(pk=request.POST['option'])
     except (KeyError, PoleHaveOptions.DoesNotExist):
