@@ -16,6 +16,7 @@ class PollTable(models.Model):
         return self.question
 
 class PollHaveOptions(models.Model):
+    user_option = models.ForeignKey(PollTable, on_delete=models.CASCADE, related_name='options', null=True)
     option = models.CharField(max_length=50)
 
     def __str__(self):
