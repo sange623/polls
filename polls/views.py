@@ -14,7 +14,7 @@ def vote(request, poll_id):
     poll = get_object_or_404(PollTable, pk=poll_id)
     user = get_object_or_404(Poll, pk=request.POST['user_id'])
     try:
-        selected_option = poll.polehaveoptions_set.get(pk=request.POST['option'])
+        selected_option = poll.pollhaveoptions_set.get(pk=request.POST['option'])
     except (KeyError, PollHaveOptions.DoesNotExist):
         return render(request, 'polls/poll_detail.html', {
             'poll': poll,
