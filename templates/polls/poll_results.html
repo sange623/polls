@@ -2,14 +2,20 @@
 <html>
 <head>
     <title>{{ poll.question }} - Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>{{ poll.question }} - Results</h1>
-    <ul>
-        {% for option in poll.polehaveoptions_set.all %}
-            <li>{{ option.option }} - {{ option.vote_set.count }} votes</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'polls:poll_list' %}">Back to Polls</a>
+    <div class="container">
+        <h1 class="my-4">{{ poll.question }} - Results</h1>
+        <ul class="list-group">
+            {% for option in poll.options.all %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ option.option }}
+                    <span class="badge badge-primary badge-pill">{{ option.vote_set.count }} votes</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'polls:poll_list' %}" class="btn btn-secondary my-3">Back to Polls</a>
+    </div>
 </body>
 </html>
